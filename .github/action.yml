@@ -1,0 +1,30 @@
+name: 'Deploy Remote Job'
+description: 'Deploy Remote Nomad Job using Levant'
+inputs:
+  address:  # id of input
+    description: 'server address'
+    required: true
+    default: '0.0.0.0'
+  service_name:  # id of input
+    description: 'service name'
+    required: true
+    default: 'nomad sample job'
+  artifact_url:  # id of input
+    description: 'remote artifact url'
+    required: true
+    default: 'null'
+  artifact_file:  # id of input
+    description: 'artifact name'
+    required: true
+    default: 'null'
+# outputs:
+  # time: # id of output
+    # description: 'The time we greeted you'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.address }}
+    - ${{ inputs.service_name }}
+    - ${{ inputs.artifact_url }}
+    - ${{ inputs.artifact_file }}
