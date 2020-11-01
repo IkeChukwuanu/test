@@ -9,11 +9,11 @@ job "[[.service_name]]" {
       artifact {
         source      = "[[.artifact_url]]"
         mode        = "file"
-        destination = "local/[[.artifact_file]]"
+        destination = "local/[[.service_name]].jar"
       }
 
       config {
-        jar_path = "local/[[.artifact_file]]"
+        jar_path = "local/[[.service_name]].jar"
         args = [
           "--spring.profiles.active=local",
         ]

@@ -2,17 +2,20 @@ name: Self Action
 on:
   push:
     branches:
-      - master
+      - test/action
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      address: ${{ secrets.NOMAD_SERVER_ADDR }}
+      service_name: "foodshare-beta"
+      artifact_url: ${{ secrets.ARTIFACT_URL }}
+
+    steps:
+      - uses: actions/checkout@v2
+
       - name: "Run custom action"
         uses: ./.github/
         id: custom-action
-        with:
-          address: "34.71.65.43"
-          service_name: "foodshare-beta"
-          artifact_url: "gs://sample-jar/demo-0.0.1-SNAPSHOT.jar"
-          artifact_file: "demo-0.0.1-SNAPSHOT.jar"
